@@ -34,13 +34,13 @@ library(tidyr)
 
 df <- tbl_df(combined)
 
-df %>%
+tidy <- df %>%
   gather(measurement, value, -activity, -subject) %>%
-  group_by(activity, subject) %>%
+  group_by(activity, subject, measurement) %>%
   summarize(avgMeasurement = mean(value))
 
-write.csv(combined, "combinedTidyAverage.csv")
-write.table(combined, "combinedTidyAverage.txt", row.name=FALSE)
+write.csv(tidy, "combinedTidyAverage.csv")
+write.table(tidy, "combinedTidyAverage.txt", row.name=FALSE)
 
 
 
