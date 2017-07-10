@@ -1,3 +1,6 @@
+dir.create("~/coursera-cleaningData/")
+dir.create("~/coursera-cleaningData/coursera-gettingcleaningData")
+
 setwd("~/coursera-cleaningData/coursera-gettingcleaningData")
 url <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
 
@@ -27,7 +30,7 @@ colnames(subject_test) <- c("subject") # Subject is the person performing the te
 combined <- cbind(X, y, subject_test)
 write.csv(combined, "mergedData.csv")
 
-
+install.packages(c("dplyr", "tidyr"))
 library(dplyr)
 library(tidyr)
 
@@ -39,6 +42,7 @@ tidy <- df %>%
   group_by(activity, subject, measurement) %>%
   summarize(avgMeasurement = mean(value))
 
+setwd("~/coursera-cleaningData/coursera-gettingcleaningData/")
 write.csv(tidy, "combinedTidyAverage.csv")
 write.table(tidy, "combinedTidyAverage.txt", row.name=FALSE)
 
